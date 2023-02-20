@@ -1,6 +1,6 @@
 package com.phonebook.domain;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public record DeviceDetails(
     int id,
@@ -11,5 +11,5 @@ public record DeviceDetails(
     String g3,
     String g4,
     String taken_by,
-    Date taken_at
+    Timestamp taken_at
 ) {}
