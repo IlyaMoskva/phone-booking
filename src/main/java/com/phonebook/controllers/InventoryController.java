@@ -20,12 +20,17 @@ public class InventoryController {
 
     @RequestMapping(value = "/")
     public String welcome() {
-        return "Welcome to Phone Booking api v 1.3.0";
+        return "Welcome to Phone Booking api v 1.4.0";
     }
 
     @RequestMapping(value = "/load", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public DeviceDetails loadDevice(@RequestParam String brand, @RequestParam String device) {
-        return deviceService.addDevice(new DeviceDetails( 123, brand, device, "immortal", "1800/1900", "WCDMA", "LTE+", null, null));
+    public DeviceDetails loadDevice(@RequestParam Optional<String> brand,
+                                    @RequestParam String device,
+                                    @RequestParam String tech,
+                                    @RequestParam String g2bands,
+                                    @RequestParam String g3bands,
+                                    @RequestParam String g4bands) {
+        return deviceService.addDevice(brand, device, tech, g2bands, g3bands, g4bands);
     }
 
     @RequestMapping(value = "/expose", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

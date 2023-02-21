@@ -11,7 +11,6 @@ import com.phonebook.domain.DeviceDetails;
 import com.phonebook.responses.FonoResponse;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.core.support.FragmentNotImplementedException;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -40,7 +39,7 @@ public class DeviceService {
         }
     }
 
-    public boolean isAvailable(int id) throws DeviceNotFoundException {
+    private boolean isAvailable(int id) throws DeviceNotFoundException {
         Device device = getDeviceById(id);
         return device.getTakenBy() == null;
     }
@@ -64,15 +63,13 @@ public class DeviceService {
         return devices;
     }
 
-    public DeviceDetails addDevice(DeviceDetails dd) {
-        Device device = deviceRepository.save(new Device(dd.brand(), dd.device(), dd.technology(), dd.g2(), dd.g3(), dd.g4()));
-        return mapper.deviceToDeviceDetails(device);
+    public DeviceDetails addDevice(Optional<String> brand, String device, String tech, String g2bands, String g3bands, String g4bands) {
+        Device savedDevice = deviceRepository.save(new Device(brand.orElse(null), device, tech, g2bands, g3bands, g4bands));
+        return mapper.deviceToDeviceDetails(savedDevice);
     }
 
     public DeviceDetails bookDevice(int id, String userId) throws DeviceNotFoundException, DeviceAlreadyInUseException {
-
         Device device = getDeviceById(id);
-        // TODO: can be validator
         if (!isAvailable(id))
             throw new DeviceAlreadyInUseException(" (id:" + id + ", " + device.getBrand() + " " + device.getDevice() + ") by " + device.getTakenBy() + " since " + device.getTakenAt());
         device.setTakenAt(new Timestamp(System.currentTimeMillis()));

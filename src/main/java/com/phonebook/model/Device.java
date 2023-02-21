@@ -23,7 +23,6 @@ public class Device {
         private String g3;
         @Column(name="G4")
         private String g4;
-
         @Column(name="TAKEN_BY")
         private String taken_by;
         @Column(name="TAKEN_AT")

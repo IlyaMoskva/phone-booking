@@ -64,7 +64,6 @@ public class FonoService {
         } else {
             throw new ApiNotFoundException("Can't expose data from fonoapi", rs.statusCode());
         }
-
     }
 
 }
