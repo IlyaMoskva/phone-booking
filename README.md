@@ -17,18 +17,18 @@ According to requirements must be:
 Characteristics must be taken from FonoAPI project
 In case it's not available (and it is not), implement a workaround.
 
-Solution is implemented with embedded database H2 to store devices and do tests.
+Solution is implemented with embedded database H2 to store devices and do tests. Table is just one as there is no requirements to have journal. Better to separate inventory and using journal to add transactions (take|return) incrementaly. And solve issue with initial data.sql load. 
 
-API: 
+Booking API: 
 
-GET: /api/v1/book{id}    - borrow device, if available. Header with username is required to update journal record.
-GET: /api/v1/return/{id} - return device
+- GET: /api/v1/book{id}    - borrow device, if available. Header with username is required to update journal record.
+- GET: /api/v1/return/{id} - return device
 
-Inventory management:
+Inventory management API:
 
-GET: /api/v1/inventory/all.      - return list of all devices
-GET: /api/v1/inventory/available - return list of all available devices
+- GET: /api/v1/inventory/all       - return list of all devices
+- GET: /api/v1/inventory/available - return list of all available devices
+- GET: /api/v1/inventory/expose    - make an attempt to find and populate device details from FonoApi and store it in DB. Required device name and optional brand.
+- GET: /api/v1/inventory/load      - save device details from request query parameters. Required device name and optional brand.
 
-GET: /api/v1/inventory/expose.   - make an attempt to find and populate device details from FonoApi and store it in DB. Required device name and optional brand.
-GET: /api/v1/inventory/load      - save device details from request query parameters. Required device name and optional brand.
-
+There is no need to delete endpoint, but it's easy to add.
