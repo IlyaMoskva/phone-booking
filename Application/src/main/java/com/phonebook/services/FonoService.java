@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.phonebook.exceptions.ApiNotFoundException;
 import com.phonebook.exceptions.InternalException;
+import com.phonebook.httpclients.FonoApiClient;
 import com.phonebook.responses.FonoResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

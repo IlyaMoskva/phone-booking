@@ -1,5 +1,6 @@
-package com.phonebook.controllers;
+package controllers;
 
+import com.phonebook.controllers.BookingController;
 import com.phonebook.domain.DeviceDetails;
 import com.phonebook.exceptions.DeviceAlreadyInUseException;
 import com.phonebook.exceptions.DeviceNotFoundException;

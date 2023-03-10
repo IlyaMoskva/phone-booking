@@ -7,9 +7,14 @@
     <groupId>com.phonebook</groupId>
     <artifactId>PhoneBook</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>phonebooking-app</name>
     <description>Phone Booking App</description>
+    <modules>
+        <module>Infra</module>
+        <module>API</module>
+        <module>Application</module>
+    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
