@@ -1,4 +1,4 @@
-package com.phonebook.services;
+package com.phonebook.httpclients;
 
 import java.io.IOException;
 import java.net.URI;
